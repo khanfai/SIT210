@@ -1,0 +1,37 @@
+#include "mbed.h"
+#include "ultrasonic.h"
+DigitalOut led1(LED1);
+
+void dist(int a)
+{
+    if(a > 800)
+    {led1 = 0;
+        
+    }
+    else if (a < 800 && a > 200)
+    {
+            led1 = 1;
+            wait(0.5);
+            led1 = 0;
+            wait(0.5);
+    }
+    else
+    {           led1 = 1;
+                wait(0.1);
+                led1 = 0;
+                wait (0.1);
+    }
+}
+
+ultrasonic sensor(p25, p7, .1, 1, &dist);   
+
+int main()
+{
+    sensor.startUpdates();
+    while(true)
+    {
+        
+        sensor.checkDistance();     
+                                
+    }
+}
