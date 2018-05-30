@@ -1,0 +1,32 @@
+//include HC_SR04 library
+
+// This #include statement was automatically added by the Particle IDE.
+#include <HC_SR04.h>
+
+int myled = D3;
+int trigPin = D2;
+int echoPin = D6;
+HC_SR04 ultrasonic = HC_SR04 (trigPin, echoPin);
+
+void setup() {
+    
+    pinMode(myled, OUTPUT);
+
+}
+
+void loop() {
+    int Wave = ultrasonic.getDistanceCM();
+    
+    if(Wave < 1)
+    {
+        Particle.publish("WAVE", "Present", PRIVATE );
+        digitalWrite(myled, HIGH);
+    }
+    else 
+    {
+        Particle.publish("WAVE", "Absent", PRIVATE );
+        digitalWrite(myled, LOW);
+    }
+    
+    delay(1000);
+}
