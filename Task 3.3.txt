@@ -1,0 +1,56 @@
+int red = D3; //red led light
+int green = D5;  //green led light
+int blue = D7;		// blue led light
+
+int ledfunction(String args)
+{
+    if (args == "red")
+    {
+    digitalWrite(red, HIGH);
+    delay(500);
+    digitalWrite(red, LOW);
+    delay(500);
+    return 0;		// returns 0 if the function work
+    }
+    
+    if (args == "green")
+    {
+    digitalWrite(green, HIGH);
+    delay(500);
+    digitalWrite(green, LOW);
+    delay(450);
+    return 1; 		// returns 1 if the function work
+    }
+   
+    if (args == "blue")
+    {
+    
+    digitalWrite(blue, HIGH);
+    delay(450);
+    digitalWrite(blue, LOW);
+    delay(450);
+    return 2;	// returns 2 if the function work
+    
+    }
+    
+   
+ 
+    
+}
+
+void setup() {
+    
+    pinMode(red, OUTPUT); 
+    pinMode(green, OUTPUT);
+    pinMode(blue, OUTPUT);
+    
+    Particle.function("ledfunction", ledfunction); //ledfunction is the name of the function 
+    
+    
+}
+
+
+
+void loop() {
+   
+}
